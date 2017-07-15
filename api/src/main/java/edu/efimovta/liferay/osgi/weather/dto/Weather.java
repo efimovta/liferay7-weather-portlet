@@ -1,7 +1,12 @@
 package edu.efimovta.liferay.osgi.weather.dto;
 
+import java.util.Date;
+
 /**
- * Created by eta on 7/5/2017.
+ * Just dto for weather with getter and setters.
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
  */
 public interface Weather {
 
@@ -19,11 +24,11 @@ public interface Weather {
 
     double getLat();
 
-    void setLat(double lat);
+    void setLatitude(double lat);
 
     double getLon();
 
-    void setLon(double lon);
+    void setLongitude(double lon);
 
     String getCondition();
 
@@ -41,4 +46,8 @@ public interface Weather {
     double getMaxTemp();
 
     void setMaxTemp(double maxTemp);
+
+    Date getDate();
+
+    void setDate(Date date);
 }

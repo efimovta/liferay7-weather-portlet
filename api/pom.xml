@@ -26,10 +26,8 @@
                         <Export-Package>
                             edu.efimovta.liferay.osgi.weather.printer.service,
                             edu.efimovta.liferay.osgi.weather.service,
-                            edu.efimovta.liferay.osgi.weather.dto,
-                            edu.efimovta.liferay.osgi.weather.dto.impl
+                            edu.efimovta.liferay.osgi.weather.dto
                         </Export-Package>
-                        <!--<Export-Package/>-->
                     </instructions>
                 </configuration>
             </plugin>
