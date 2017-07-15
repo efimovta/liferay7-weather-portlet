@@ -1,4 +1,4 @@
-package edu.efimovta.liferay.osgi.weather.configuration;
+package edu.efimovta.liferay.osgi.weather.portlet.configuration;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -7,7 +7,7 @@ import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import edu.efimovta.liferay.osgi.weather.constants.WeatherPortletKeys;
+import edu.efimovta.liferay.osgi.weather.portlet.constants.WeatherPortletKeys;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -18,10 +18,19 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+/**
+ * Action on edit preferences for Weather Portlet
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
+ */
 @Component(
-        configurationPid = "edu.efimovta.liferay.osgi.weather.configuration.WeatherPortletConfiguration",
+        configurationPid = "edu.efimovta.liferay.osgi.weather.portlet.configuration.WeatherPortletConfiguration",
         configurationPolicy = ConfigurationPolicy.OPTIONAL,
         immediate = true,
         property = {
@@ -31,14 +40,21 @@ import java.util.Map;
 )
 public class WeatherPortletConfigurationAction extends DefaultConfigurationAction {
 
+    private static final Log _log = LogFactoryUtil.getLog(WeatherPortletConfigurationAction.class);
+    private volatile WeatherPortletConfiguration weatherPortletConfiguration;
+
     @Override
     public void include(PortletConfig portletConfig, HttpServletRequest httpServletRequest,
                         HttpServletResponse httpServletResponse) throws Exception {
 
+        Date defDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String defDateStr = dateFormat.format(defDate);
+
         httpServletRequest.setAttribute("cmd", Constants.CMD);
         httpServletRequest.setAttribute("update", Constants.UPDATE);
         httpServletRequest.setAttribute("cityDefault", weatherPortletConfiguration.city());
-        httpServletRequest.setAttribute("dateDefault", weatherPortletConfiguration.date());
+        httpServletRequest.setAttribute("dateDefault", defDateStr);
 
         super.include(portletConfig, httpServletRequest, httpServletResponse);
     }
@@ -60,9 +76,5 @@ public class WeatherPortletConfigurationAction extends DefaultConfigurationActio
     protected void activate(Map<Object, Object> properties) {
         weatherPortletConfiguration = ConfigurableUtil.createConfigurable(WeatherPortletConfiguration.class, properties);
     }
-
-    private static final Log _log = LogFactoryUtil.getLog(WeatherPortletConfigurationAction.class);
-
-    private volatile WeatherPortletConfiguration weatherPortletConfiguration;
 
 }

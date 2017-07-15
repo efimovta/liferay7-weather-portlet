@@ -1,0 +1,8 @@
+Bundle-Name: WeatherGetter api
+Bundle-SymbolicName: edu.efimovta.liferay.osgi.weather.service
+Bundle-Version: 1.0-SNAPSHOT
+Bundle-Description: WeatherGetter service api
+Export-Package:\
+    edu.efimovta.liferay.osgi.weather.service,\
+    edu.efimovta.liferay.osgi.weather.dto
+

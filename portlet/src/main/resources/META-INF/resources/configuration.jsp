@@ -14,7 +14,7 @@
 		value="${configurationRenderURL}" />
 
 	<aui:input name="city" label="City" value="${cityDefault}"/>
-	<b>(Examples: Moscow, Delhi, Bangalore, Chennai, Hyderabad)</b>
+	<b>(Examples: Saint Petersburg, Moscow, Delhi, Bangalore, Chennai, Hyderabad)</b>
 	<aui:input name="date" label="Date" value="${dateDefault}"/>
 	<b>(Note! Enter date in this format: 2017-07-18)</b>
 

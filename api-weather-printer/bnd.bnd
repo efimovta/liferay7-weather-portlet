@@ -1,0 +1,6 @@
+Bundle-Name: WeatherPrinter api
+Bundle-SymbolicName: edu.efimovta.liferay.osgi.weather.printer.service
+Bundle-Version: 1.0-SNAPSHOT
+Bundle-Description: WeatherPrinter service api
+Export-Package: edu.efimovta.liferay.osgi.weather.printer.service
+

@@ -10,18 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>app</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>edu.efimovta.liferay.osgi.weather</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>edu.efimovta.liferay.osgi.weather</groupId>
-            <artifactId>file-printer</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 
     <packaging>bundle</packaging>
@@ -62,5 +50,17 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>edu.efimovta.liferay.osgi.weather-portlet</groupId>
+            <artifactId>api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>edu.efimovta.liferay.osgi.weather-portlet</groupId>
+            <artifactId>api-weather-printer</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

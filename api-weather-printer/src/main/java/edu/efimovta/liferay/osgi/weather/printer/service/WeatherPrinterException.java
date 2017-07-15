@@ -1,7 +1,10 @@
 package edu.efimovta.liferay.osgi.weather.printer.service;
 
 /**
- * Created by eta on 7/6/2017.
+ * If any problem occurs while printing weather
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
  */
 public class WeatherPrinterException extends Exception {
     public WeatherPrinterException() {

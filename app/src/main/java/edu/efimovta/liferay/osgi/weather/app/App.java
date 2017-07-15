@@ -1,6 +1,8 @@
 package edu.efimovta.liferay.osgi.weather.app;
 
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import edu.efimovta.liferay.osgi.weather.dto.Weather;
 import edu.efimovta.liferay.osgi.weather.printer.service.WeatherPrinter;
 import edu.efimovta.liferay.osgi.weather.service.WeatherGetter;
@@ -8,15 +10,23 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
- * Created by eta on 7/5/2017.
+ * App use services for get weather forecast for today for Moscow
+ * and print this to file in liferay-root/*.txt
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
  */
 @Component(immediate = true)
 public class App {
 
+    private static final Log log = LogFactoryUtil.getLog(App.class);
+
     private volatile List<WeatherGetter> weatherGetters = new ArrayList<>();
+    private volatile WeatherPrinter weatherPrinter;
 
     @Reference(
             name = "refs.WeatherGetter",
@@ -35,8 +45,6 @@ public class App {
         this.weatherGetters.remove(weatherGetter);
     }
 
-    private volatile WeatherPrinter weatherPrinter;
-
     @Reference(
             name = "refs.WeatherPrinter",
             service = WeatherPrinter.class,
@@ -54,19 +62,18 @@ public class App {
         this.weatherGetters = null;
     }
 
-//    @Activate
+    @Activate
     public void start(BundleContext context) throws Exception {
-        System.out.println("ActivatorApp start(); 1");
-
+        log.info("@Activate App start");
 
         List<Weather> weathers = new ArrayList<>();
         for (WeatherGetter weatherGetter : weatherGetters) {
-            Weather weather = weatherGetter.get();
+            Weather weather = weatherGetter.get("Moscow", new Date());
             weathers.add(weather);
         }
         weatherPrinter.print(weathers);
 
-        System.out.println("ActivatorApp start(); 2");
+        log.info("@Activate App end");
     }
 
 }

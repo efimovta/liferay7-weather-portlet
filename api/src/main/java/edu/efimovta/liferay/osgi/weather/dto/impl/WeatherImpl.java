@@ -2,8 +2,14 @@ package edu.efimovta.liferay.osgi.weather.dto.impl;
 
 import edu.efimovta.liferay.osgi.weather.dto.Weather;
 
+import java.util.Date;
+
 /**
- * Created by eta on 7/5/2017.
+ * Just dto for weather with getter and setters.
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
+ * @see Weather
  */
 public class WeatherImpl implements Weather {
     private String source;
@@ -15,22 +21,7 @@ public class WeatherImpl implements Weather {
     private double avgTemp;
     private double minTemp;
     private double maxTemp;
-
-    public WeatherImpl(String source, String city, String country, double lat, double lon, String condition, double avgTemp, double minTemp, double maxTemp) {
-        this.source = source;
-        this.city = city;
-        this.country = country;
-        this.lat = lat;
-        this.lon = lon;
-        this.condition = condition;
-        this.avgTemp = avgTemp;
-        this.minTemp = minTemp;
-        this.maxTemp = maxTemp;
-    }
-
-    public WeatherImpl(String source) {
-        this.source = source;
-    }
+    private Date date;
 
     public String getSource() {
         return source;
@@ -60,7 +51,7 @@ public class WeatherImpl implements Weather {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLatitude(double lat) {
         this.lat = lat;
     }
 
@@ -68,7 +59,7 @@ public class WeatherImpl implements Weather {
         return lon;
     }
 
-    public void setLon(double lon) {
+    public void setLongitude(double lon) {
         this.lon = lon;
     }
 
@@ -102,5 +93,15 @@ public class WeatherImpl implements Weather {
 
     public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
+    }
+
+    @Override
+    public Date getDate() {
+        return date;
+    }
+
+    @Override
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

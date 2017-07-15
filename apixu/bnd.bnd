@@ -1,0 +1,5 @@
+Bundle-Name: ApixuWeatherGetter
+Bundle-Description: provide ApixuWeatherGetter service (using json)
+Bundle-SymbolicName: edu.efimovta.liferay.osgi.weather.service.impl.ApixuWeatherGetter
+Export-Package: edu.efimovta.liferay.osgi.weather.service.configuration
+-metatype: *

@@ -1,9 +1,13 @@
 package edu.efimovta.liferay.osgi.weather.service;
 
 /**
- * Created by eta on 7/6/2017.
+ * If any problem occurs while getting weather inf
+ *
+ * @author Efimov Timur
+ * @version 1.0.1
  */
 public class WeatherGetterException extends Exception {
+
     public WeatherGetterException() {
     }
 
