@@ -34,6 +34,7 @@ import java.util.Objects;
         configurationPolicy = ConfigurationPolicy.OPTIONAL,
         immediate = true,
         property = {
+                "com.liferay.portlet.scopeable=true",
                 "com.liferay.portlet.display-category=category.sample",
                 "com.liferay.portlet.instanceable=true",
                 "javax.portlet.display-name=" + WeatherPortletKeys.WeatherPortletName,
@@ -75,7 +76,6 @@ public class WeatherPortlet extends MVCPortlet {
         includeWeatherAttributes(renderRequest);
         super.doPrint(renderRequest, renderResponse);
     }
-
 
     private void includeWeatherAttributes(RenderRequest renderRequest) {
         String city;

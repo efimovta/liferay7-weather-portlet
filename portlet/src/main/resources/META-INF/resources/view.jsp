@@ -2,6 +2,11 @@
 
 <portlet:resourceURL id="/weather/json" var="jsonUrl" />
 
+<liferay-ui:message key="my.portlet.mes"/>
+</br>
+Просто нужно было добавть какой-нибудь текст
+</br>
+
 <c:if test="${empty weather}">
     <h2>Sorry, weather not available now</h2>
 </c:if>

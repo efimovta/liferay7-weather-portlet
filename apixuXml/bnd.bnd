@@ -1,5 +1,5 @@
 Bundle-Name: ApixuXmlWeatherGetter
 Bundle-Description: provide ApixuXmlWeatherGetter service (using xml)
-Bundle-SymbolicName: edu.efimovta.liferay.osgi.weather.service.impl.ApixuWeatherGetter
+Bundle-SymbolicName: edu.efimovta.liferay.osgi.weather.service.impl.ApixuXmlWeatherGetter
 Bundle-Version: 1.0-SNAPSHOT
 -metatype: *

@@ -73,8 +73,10 @@ public class ApixuXmlWeatherGetter implements WeatherGetter {
      * Get weather forecast from apixu.com - xml
      * for specified city and date
      *
-     * @return weather inf
-     * @throws WeatherGetterException If any problem occurs while getting weather inf
+     * @param date only yyyy-MM-dd will be taken into, minutes and hours not affect
+     * @param city city name
+     * @return weather forecast
+     * @throws WeatherGetterException If any problem occurs while getting weather forecast
      */
     public Weather get(String city, Date date) throws WeatherGetterException {
         try {
@@ -99,7 +101,7 @@ public class ApixuXmlWeatherGetter implements WeatherGetter {
         apiConfig = Configurable.createConfigurable(ApixuWeatherConfiguration.class, properties);
     }
 
-    private Weather getFromXmlSource(String url) throws ParserConfigurationException, IOException, SAXException {
+    private Weather getFromXmlSource(String url) throws IOException, SAXException, ParserConfigurationException {
         Weather weather;
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
