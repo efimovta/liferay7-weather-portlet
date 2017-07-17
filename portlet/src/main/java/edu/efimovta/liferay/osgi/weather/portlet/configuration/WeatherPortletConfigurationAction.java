@@ -43,6 +43,7 @@ public class WeatherPortletConfigurationAction extends DefaultConfigurationActio
     private static final Log _log = LogFactoryUtil.getLog(WeatherPortletConfigurationAction.class);
     private volatile WeatherPortletConfiguration weatherPortletConfiguration;
 
+
     @Override
     public void include(PortletConfig portletConfig, HttpServletRequest httpServletRequest,
                         HttpServletResponse httpServletResponse) throws Exception {

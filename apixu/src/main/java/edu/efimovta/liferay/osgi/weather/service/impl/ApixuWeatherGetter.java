@@ -5,30 +5,28 @@ import com.google.gson.Gson;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import edu.efimovta.liferay.osgi.weather.dto.Weather;
 import edu.efimovta.liferay.osgi.weather.dto.WeatherFactory;
 import edu.efimovta.liferay.osgi.weather.dto.apixu_json_structure.WeatherJsonRoot;
 import edu.efimovta.liferay.osgi.weather.dto.builder.ApixuFromJsonStructureWeatherBuilder;
+import edu.efimovta.liferay.osgi.weather.dto.builder.NotValidForecastdayListSizeReceivedException;
 import edu.efimovta.liferay.osgi.weather.service.WeatherGetter;
 import edu.efimovta.liferay.osgi.weather.service.WeatherGetterException;
 import edu.efimovta.liferay.osgi.weather.service.configuration.ApixuWeatherConfiguration;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
+import edu.efimovta.liferay.osgi.weather.service.util.BadResponseCodeException;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import static org.apache.http.HttpHeaders.USER_AGENT;
+import static edu.efimovta.liferay.osgi.weather.service.util.HttpRequesterUtil.request;
 
 /**
  * Get weather forecast from apixu.com - json.
@@ -42,6 +40,8 @@ import static org.apache.http.HttpHeaders.USER_AGENT;
         immediate = true
 )
 public class ApixuWeatherGetter implements WeatherGetter {
+
+    private static final Log LOG = LogFactoryUtil.getLog(ApixuWeatherGetter.class);
 
     private static final String SOURCE_NAME = "apixu.com - json";
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
@@ -61,7 +61,7 @@ public class ApixuWeatherGetter implements WeatherGetter {
      * Get weather forecast from apixu.com - json
      * for specified longitude, latitude and date
      *
-     * @return weather inf
+     * @return weather forecast
      * @throws WeatherGetterException If any problem occurs while getting weather inf
      */
     public Weather get(double longitude, double latitude, Date date) throws WeatherGetterException {
@@ -69,7 +69,8 @@ public class ApixuWeatherGetter implements WeatherGetter {
         try {
             String json = getJsonFromSource(longitude, latitude, date);
             weather = parseJson(json);
-        } catch (JSONException | IOException e) {
+        } catch (IOException | BadResponseCodeException | NotValidForecastdayListSizeReceivedException e) {
+            LOG.error(e, e);
             throw new WeatherGetterException(e);
         }
         return weather;
@@ -79,15 +80,18 @@ public class ApixuWeatherGetter implements WeatherGetter {
      * Get weather forecast from apixu.com - json
      * for specified city and date
      *
-     * @return weather inf
-     * @throws WeatherGetterException If any problem occurs while getting weather inf
+     * @param date only yyyy-MM-dd will be taken into, minutes and hours not affect
+     * @param city city name
+     * @return weather forecast
+     * @throws WeatherGetterException If any problem occurs while getting weather forecast
      */
     public Weather get(String city, Date date) throws WeatherGetterException {
         Weather weather;
         try {
             String json = getJsonFromSource(city, date);
             weather = parseJson(json);
-        } catch (JSONException | IOException e) {
+        } catch (IOException | BadResponseCodeException | NotValidForecastdayListSizeReceivedException e) {
+            LOG.error(e, e);
             throw new WeatherGetterException(e);
         }
         return weather;
@@ -99,7 +103,7 @@ public class ApixuWeatherGetter implements WeatherGetter {
         apiConfig = Configurable.createConfigurable(ApixuWeatherConfiguration.class, properties);
     }
 
-    private String getJsonFromSource(double longitude, double latitude, Date date) throws IOException {
+    private String getJsonFromSource(double longitude, double latitude, Date date) throws IOException, BadResponseCodeException {
         String json;
         String formattedDate = DATE_FORMAT.format(date);
         String url = apiConfig.jsonApiUrl() + "?"
@@ -111,7 +115,7 @@ public class ApixuWeatherGetter implements WeatherGetter {
         return json;
     }
 
-    private String getJsonFromSource(String city, Date date) throws IOException {
+    private String getJsonFromSource(String city, Date date) throws IOException, BadResponseCodeException {
         String json;
         String formattedDate = DATE_FORMAT.format(date);
         String url = apiConfig.jsonApiUrl() + "?"
@@ -123,26 +127,33 @@ public class ApixuWeatherGetter implements WeatherGetter {
         return json;
     }
 
-    private String request(String url) throws IOException {
-        System.out.println("~~~~~~~~~~~~~~~request(String url) API: " + apiConfig.apiKey());
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
 
-        request.addHeader("User-Agent", USER_AGENT);
-        HttpResponse response = client.execute(request);
-
-        BufferedReader rd = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));
-
-        StringBuilder result = new StringBuilder();
-        String line = "";
-        while ((line = rd.readLine()) != null) {
-            result.append(line);
-        }
-        return result.toString();
-    }
-
-    private Weather parseJson(String json) throws JSONException {
+    //    private String getJsonFromSource(double longitude, double latitude, Date date) throws IOException, BadResponseCodeException {
+//        String json;
+//        String formattedDate = DATE_FORMAT.format(date);
+//        String url = SOURCE_URL + "?"
+//                + URL_PARAMETER_API_KEY + "=" + API_KEY
+//                + "&" + URL_PARAMETER_PLACE + "=" + longitude + "," + latitude
+//                + "&" + URL_PARAMETER_DATE + "=" + formattedDate;
+//        url = replaceSpacesWithCode20(url);
+//        json = request(url);
+//        return json;
+//    }
+//
+//
+//    private String getJsonFromSource(String city, Date date) throws IOException, BadResponseCodeException {
+//        String json;
+//        String formattedDate = DATE_FORMAT.format(date);
+//        String url = SOURCE_URL + "?"
+//                + URL_PARAMETER_API_KEY + "=" + API_KEY
+//                + "&" + URL_PARAMETER_PLACE + "=" + city
+//                + "&" + URL_PARAMETER_DATE + "=" + formattedDate;
+//        url = replaceSpacesWithCode20(url);
+//        json = request(url);
+//        return json;
+//    }
+//
+    private Weather parseJson(String json) throws NotValidForecastdayListSizeReceivedException {
         Weather weather;
 
         Gson gson = new Gson();
@@ -176,7 +187,6 @@ public class ApixuWeatherGetter implements WeatherGetter {
         double avgtemp_c = day.getDouble("avgtemp_c");
         double mintemp_c = day.getDouble("mintemp_c");
         double maxtemp_c = day.getDouble("maxtemp_c");
-        System.out.println("WEATHER GETTED");
 
         Date date = new Date((date_epoch - 3 * 60 * 60) * 1000);
 

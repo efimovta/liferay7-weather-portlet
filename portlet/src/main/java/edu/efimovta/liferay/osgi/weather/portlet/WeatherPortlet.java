@@ -76,7 +76,6 @@ public class WeatherPortlet extends MVCPortlet {
         super.doPrint(renderRequest, renderResponse);
     }
 
-
     private void includeWeatherAttributes(RenderRequest renderRequest) {
         String city;
         String dateStr;

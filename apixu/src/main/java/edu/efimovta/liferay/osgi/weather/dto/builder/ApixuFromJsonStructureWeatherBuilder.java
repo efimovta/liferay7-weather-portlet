@@ -5,6 +5,7 @@ import edu.efimovta.liferay.osgi.weather.dto.WeatherFactory;
 import edu.efimovta.liferay.osgi.weather.dto.apixu_json_structure.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Build Weather from json structured class
@@ -20,11 +21,15 @@ public class ApixuFromJsonStructureWeatherBuilder {
      * @param weatherJsonRoot json structured class
      * @return needed weather inf
      */
-    public Weather build(WeatherJsonRoot weatherJsonRoot) {
+    public Weather build(WeatherJsonRoot weatherJsonRoot) throws NotValidForecastdayListSizeReceivedException {
         Weather weather = new WeatherFactory().get();
 
         Location location = weatherJsonRoot.getLocation();
-        Forecastday forecastday = weatherJsonRoot.getForecast().getForecastday().get(0);
+        List<Forecastday> forecastdayList = weatherJsonRoot.getForecast().getForecastday();
+        if (forecastdayList.size() != 1) {
+            throw new NotValidForecastdayListSizeReceivedException(forecastdayList.size() + " forecastday was returned, 1 expected");
+        }
+        Forecastday forecastday = forecastdayList.get(0);
         Day day = forecastday.getDay();
         Condition condition = day.getCondition();
 
