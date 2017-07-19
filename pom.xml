@@ -15,6 +15,7 @@
         <module>portlet</module>
         <module>api-weather-printer</module>
         <module>app</module>
+        <module>db.weather</module>
     </modules>
 
 

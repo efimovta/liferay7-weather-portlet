@@ -5,6 +5,7 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import edu.efimovta.liferay.osgi.db.weather.service.WeatherLocalService;
 import edu.efimovta.liferay.osgi.weather.dto.Weather;
 import edu.efimovta.liferay.osgi.weather.portlet.configuration.WeatherPortletConfiguration;
 import edu.efimovta.liferay.osgi.weather.portlet.constants.WeatherPortletKeys;
@@ -55,16 +56,17 @@ public class WeatherPortlet extends MVCPortlet {
 
     private static final Log _log = LogFactoryUtil.getLog(WeatherPortlet.class);
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+    @Reference
+    protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
     private volatile WeatherPortletConfiguration weatherPortletConfiguration;
-
     @Reference
     private WeatherGetter weatherGetter;
+    @Reference
+    private WeatherLocalService weatherLocalService;
 
     @Override
     public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
             throws IOException, PortletException {
-
         includeWeatherAttributes(renderRequest);
         super.doView(renderRequest, renderResponse);
     }
@@ -100,16 +102,31 @@ public class WeatherPortlet extends MVCPortlet {
 
             weather = weatherGetter.get(city, date);
 
+            add(weather);
+
         } catch (WeatherGetterException e) {
             _log.error("While weatherGetter.get(city, date);", e);
         } catch (ParseException e) {
             _log.error("Can not parse 'date' from PortletPreferences", e);
         }
 
-
         renderRequest.setAttribute("city", city);
         renderRequest.setAttribute("date", dateStr);
         renderRequest.setAttribute("weather", weather);
+
+    }
+
+    private void add(Weather weather) {
+        long i = counterLocalService.increment();
+        System.out.println("~~~~~~~~~~~~~~~ counterLocalService.getCountersCount(); --- " + i);
+        edu.efimovta.liferay.osgi.db.weather.model.Weather weatherdb =
+                weatherLocalService.createWeather(i);
+
+        weatherdb.setCity(weather.getCity());
+        weatherdb.setCondition(weather.getCondition());
+
+        weatherLocalService.addWeather(weatherdb);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~ weathers count: " + weatherLocalService.getWeathersCount());
     }
 
     @Activate
