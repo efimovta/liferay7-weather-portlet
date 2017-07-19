@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<model-hints>
+    <model name="edu.efimovta.liferay.osgi.db.weather.model.Weather">
+        <field name="weatherId" type="long"/>
+        <field name="groupId" type="long"/>
+        <field name="companyId" type="long"/>
+        <field name="userId" type="long"/>
+        <field name="userName" type="String"/>
+        <field name="createDate" type="Date"/>
+        <field name="modifiedDate" type="Date"/>
+        <field name="source" type="String"/>
+        <field name="city" type="String"/>
+        <field name="country" type="String"/>
+        <field name="lat" type="double"/>
+        <field name="lon" type="double"/>
+        <field name="condition" type="String"/>
+        <field name="avgTemp" type="double"/>
+        <field name="minTemp" type="double"/>
+        <field name="maxTemp" type="double"/>
+        <field name="date" type="Date"/>
+    </model>
+</model-hints>

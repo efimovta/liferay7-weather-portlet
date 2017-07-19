@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+    <import class="edu.efimovta.liferay.osgi.db.weather.model.Weather"/>
+    <class name="edu.efimovta.liferay.osgi.db.weather.model.impl.WeatherImpl" table="Weather_Weather">
+        <id name="weatherId" type="long">
+            <generator class="assigned"/>
+        </id>
+        <property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType"/>
+        <property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType"/>
+        <property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType"/>
+        <property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="createDate" type="org.hibernate.type.TimestampType"/>
+        <property name="modifiedDate" type="org.hibernate.type.TimestampType"/>
+        <property name="source" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="lat" type="com.liferay.portal.dao.orm.hibernate.DoubleType"/>
+        <property name="lon" type="com.liferay.portal.dao.orm.hibernate.DoubleType"/>
+        <property column="condition_" name="condition" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="avgTemp" type="com.liferay.portal.dao.orm.hibernate.DoubleType"/>
+        <property name="minTemp" type="com.liferay.portal.dao.orm.hibernate.DoubleType"/>
+        <property name="maxTemp" type="com.liferay.portal.dao.orm.hibernate.DoubleType"/>
+        <property column="date_" name="date" type="org.hibernate.type.TimestampType"/>
+    </class>
+</hibernate-mapping>

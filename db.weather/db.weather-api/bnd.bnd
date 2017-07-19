@@ -1,0 +1,10 @@
+Bundle-Name: db.weather-api
+Bundle-SymbolicName: edu.efimovta.liferay.osgi.db.weather.api
+Bundle-Version: 1.0
+Export-Package:\
+	edu.efimovta.liferay.osgi.db.weather.exception,\
+	edu.efimovta.liferay.osgi.db.weather.model,\
+	edu.efimovta.liferay.osgi.db.weather.service,\
+	edu.efimovta.liferay.osgi.db.weather.service.persistence
+-includeresource: META-INF/service.xml=../db.weather-service/service.xml
+-metatype: *

@@ -1,0 +1,1 @@
+create index IX_D50809D3 on Weather_Weather (city[$COLUMN_LENGTH:75$], date_);

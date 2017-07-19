@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       default-destroy-method="destroy" default-init-method="afterPropertiesSet"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="edu.efimovta.liferay.osgi.db.weather.service.impl.WeatherLocalServiceImpl"
+          id="edu.efimovta.liferay.osgi.db.weather.service.WeatherLocalService"/>
+    <bean class="edu.efimovta.liferay.osgi.db.weather.service.impl.WeatherServiceImpl"
+          id="edu.efimovta.liferay.osgi.db.weather.service.WeatherService"/>
+    <bean class="edu.efimovta.liferay.osgi.db.weather.service.persistence.impl.WeatherPersistenceImpl"
+          id="edu.efimovta.liferay.osgi.db.weather.service.persistence.WeatherPersistence" parent="basePersistence"/>
+</beans>
