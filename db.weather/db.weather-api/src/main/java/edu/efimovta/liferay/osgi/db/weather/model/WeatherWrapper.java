@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * <p>
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * <p>
+ *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -63,6 +63,8 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
         attributes.put("userName", getUserName());
         attributes.put("createDate", getCreateDate());
         attributes.put("modifiedDate", getModifiedDate());
+        attributes.put("searchParamCity", getSearchParamCity());
+        attributes.put("searchParamDate", getSearchParamDate());
         attributes.put("source", getSource());
         attributes.put("city", getCity());
         attributes.put("country", getCountry());
@@ -119,6 +121,18 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
 
         if (modifiedDate != null) {
             setModifiedDate(modifiedDate);
+        }
+
+        String searchParamCity = (String) attributes.get("searchParamCity");
+
+        if (searchParamCity != null) {
+            setSearchParamCity(searchParamCity);
+        }
+
+        Date searchParamDate = (Date) attributes.get("searchParamDate");
+
+        if (searchParamDate != null) {
+            setSearchParamDate(searchParamDate);
         }
 
         String source = (String) attributes.get("source");
@@ -328,6 +342,17 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
     }
 
     @Override
+    public edu.efimovta.liferay.osgi.weather.dto.Weather getWeather() {
+        return _weather.getWeather();
+    }
+
+    @Override
+    public void setWeather(
+            edu.efimovta.liferay.osgi.weather.dto.Weather weather) {
+        _weather.setWeather(weather);
+    }
+
+    @Override
     public int compareTo(
             edu.efimovta.liferay.osgi.db.weather.model.Weather weather) {
         return _weather.compareTo(weather);
@@ -411,6 +436,26 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
     @Override
     public void setCountry(java.lang.String country) {
         _weather.setCountry(country);
+    }
+
+    /**
+     * Returns the search param city of this weather.
+     *
+     * @return the search param city of this weather
+     */
+    @Override
+    public java.lang.String getSearchParamCity() {
+        return _weather.getSearchParamCity();
+    }
+
+    /**
+     * Sets the search param city of this weather.
+     *
+     * @param searchParamCity the search param city of this weather
+     */
+    @Override
+    public void setSearchParamCity(java.lang.String searchParamCity) {
+        _weather.setSearchParamCity(searchParamCity);
     }
 
     /**
@@ -541,6 +586,26 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
     @Override
     public void setModifiedDate(Date modifiedDate) {
         _weather.setModifiedDate(modifiedDate);
+    }
+
+    /**
+     * Returns the search param date of this weather.
+     *
+     * @return the search param date of this weather
+     */
+    @Override
+    public Date getSearchParamDate() {
+        return _weather.getSearchParamDate();
+    }
+
+    /**
+     * Sets the search param date of this weather.
+     *
+     * @param searchParamDate the search param date of this weather
+     */
+    @Override
+    public void setSearchParamDate(Date searchParamDate) {
+        _weather.setSearchParamDate(searchParamDate);
     }
 
     /**
@@ -686,20 +751,20 @@ public class WeatherWrapper implements Weather, ModelWrapper<Weather> {
     @Override
     public Weather getWrappedModel() {
         return _weather;
-    }
+	}
 
-    @Override
+	@Override
     public boolean isEntityCacheEnabled() {
-        return _weather.isEntityCacheEnabled();
-    }
+		return _weather.isEntityCacheEnabled();
+	}
 
-    @Override
+	@Override
     public boolean isFinderCacheEnabled() {
-        return _weather.isFinderCacheEnabled();
-    }
+		return _weather.isFinderCacheEnabled();
+	}
 
-    @Override
+	@Override
     public void resetOriginalValues() {
-        _weather.resetOriginalValues();
-    }
+		_weather.resetOriginalValues();
+	}
 }

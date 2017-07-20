@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * <p>
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * <p>
+ *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -43,6 +43,8 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
     public String userName;
     public long createDate;
     public long modifiedDate;
+    public String searchParamCity;
+    public long searchParamDate;
     public String source;
     public String city;
     public String country;
@@ -80,7 +82,7 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(35);
+        StringBundler sb = new StringBundler(39);
 
         sb.append("{weatherId=");
         sb.append(weatherId);
@@ -96,6 +98,10 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
         sb.append(createDate);
         sb.append(", modifiedDate=");
         sb.append(modifiedDate);
+        sb.append(", searchParamCity=");
+        sb.append(searchParamCity);
+        sb.append(", searchParamDate=");
+        sb.append(searchParamDate);
         sb.append(", source=");
         sb.append(source);
         sb.append(", city=");
@@ -146,6 +152,18 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
             weatherImpl.setModifiedDate(null);
         } else {
             weatherImpl.setModifiedDate(new Date(modifiedDate));
+        }
+
+        if (searchParamCity == null) {
+            weatherImpl.setSearchParamCity(StringPool.BLANK);
+        } else {
+            weatherImpl.setSearchParamCity(searchParamCity);
+        }
+
+        if (searchParamDate == Long.MIN_VALUE) {
+            weatherImpl.setSearchParamDate(null);
+        } else {
+            weatherImpl.setSearchParamDate(new Date(searchParamDate));
         }
 
         if (source == null) {
@@ -202,6 +220,8 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
         userName = objectInput.readUTF();
         createDate = objectInput.readLong();
         modifiedDate = objectInput.readLong();
+        searchParamCity = objectInput.readUTF();
+        searchParamDate = objectInput.readLong();
         source = objectInput.readUTF();
         city = objectInput.readUTF();
         country = objectInput.readUTF();
@@ -238,6 +258,14 @@ public class WeatherCacheModel implements CacheModel<Weather>, Externalizable {
 
         objectOutput.writeLong(createDate);
         objectOutput.writeLong(modifiedDate);
+
+        if (searchParamCity == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(searchParamCity);
+        }
+
+        objectOutput.writeLong(searchParamDate);
 
         if (source == null) {
             objectOutput.writeUTF(StringPool.BLANK);

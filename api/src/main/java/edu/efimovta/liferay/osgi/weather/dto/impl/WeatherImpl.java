@@ -47,7 +47,7 @@ public class WeatherImpl implements Weather {
         this.country = country;
     }
 
-    public double getLat() {
+    public double getLatitude() {
         return lat;
     }
 
@@ -55,7 +55,7 @@ public class WeatherImpl implements Weather {
         this.lat = lat;
     }
 
-    public double getLon() {
+    public double getLongitude() {
         return lon;
     }
 

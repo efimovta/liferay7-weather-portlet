@@ -9,6 +9,8 @@
         <field name="userName" type="String"/>
         <field name="createDate" type="Date"/>
         <field name="modifiedDate" type="Date"/>
+        <field name="searchParamCity" type="String"/>
+        <field name="searchParamDate" type="Date"/>
         <field name="source" type="String"/>
         <field name="city" type="String"/>
         <field name="country" type="String"/>

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * <p>
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * <p>
+ *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -110,178 +110,356 @@ public class WeatherUtil {
     }
 
     /**
-     * Returns all the weathers where city = &#63; and date = &#63;.
+     * Returns all the weathers where searchParamCity = &#63; and searchParamDate = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity the search param city
+     * @param searchParamDate the search param date
      * @return the matching weathers
      */
-    public static List<Weather> findByByCityAndDate(java.lang.String city,
-                                                    Date date) {
-        return getPersistence().findByByCityAndDate(city, date);
+    public static List<Weather> findByByCityAndDate(
+            java.lang.String searchParamCity, Date searchParamDate) {
+        return getPersistence()
+                .findByByCityAndDate(searchParamCity, searchParamDate);
     }
 
     /**
-     * Returns a range of all the weathers where city = &#63; and date = &#63;.
-     *
+     * Returns a range of all the weathers where searchParamCity = &#63; and searchParamDate = &#63;.
+     * <p>
      * <p>
      * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
-     * @param city the city
-     * @param date the date
-     * @param start the lower bound of the range of weathers
-     * @param end the upper bound of the range of weathers (not inclusive)
+     * @param searchParamCity the search param city
+     * @param searchParamDate the search param date
+     * @param start           the lower bound of the range of weathers
+     * @param end             the upper bound of the range of weathers (not inclusive)
      * @return the range of matching weathers
      */
-    public static List<Weather> findByByCityAndDate(java.lang.String city,
-                                                    Date date, int start, int end) {
-        return getPersistence().findByByCityAndDate(city, date, start, end);
+    public static List<Weather> findByByCityAndDate(
+            java.lang.String searchParamCity, Date searchParamDate, int start,
+            int end) {
+        return getPersistence()
+                .findByByCityAndDate(searchParamCity, searchParamDate,
+                        start, end);
     }
 
     /**
-     * Returns an ordered range of all the weathers where city = &#63; and date = &#63;.
-     *
+     * Returns an ordered range of all the weathers where searchParamCity = &#63; and searchParamDate = &#63;.
+     * <p>
      * <p>
      * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
-     * @param city the city
-     * @param date the date
-     * @param start the lower bound of the range of weathers
-     * @param end the upper bound of the range of weathers (not inclusive)
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param start             the lower bound of the range of weathers
+     * @param end               the upper bound of the range of weathers (not inclusive)
      * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
      * @return the ordered range of matching weathers
      */
-    public static List<Weather> findByByCityAndDate(java.lang.String city,
-                                                    Date date, int start, int end,
-                                                    OrderByComparator<Weather> orderByComparator) {
+    public static List<Weather> findByByCityAndDate(
+            java.lang.String searchParamCity, Date searchParamDate, int start,
+            int end, OrderByComparator<Weather> orderByComparator) {
         return getPersistence()
-                .findByByCityAndDate(city, date, start, end,
+                .findByByCityAndDate(searchParamCity, searchParamDate,
+                        start, end, orderByComparator);
+    }
+
+    /**
+     * Returns an ordered range of all the weathers where searchParamCity = &#63; and searchParamDate = &#63;.
+     * <p>
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param start             the lower bound of the range of weathers
+     * @param end               the upper bound of the range of weathers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @param retrieveFromCache whether to retrieve from the finder cache
+     * @return the ordered range of matching weathers
+     */
+    public static List<Weather> findByByCityAndDate(
+            java.lang.String searchParamCity, Date searchParamDate, int start,
+            int end, OrderByComparator<Weather> orderByComparator,
+            boolean retrieveFromCache) {
+        return getPersistence()
+                .findByByCityAndDate(searchParamCity, searchParamDate,
+                        start, end, orderByComparator, retrieveFromCache);
+    }
+
+    /**
+     * Returns the first weather in the ordered set where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching weather
+     * @throws NoSuchWeatherException if a matching weather could not be found
+     */
+    public static Weather findByByCityAndDate_First(
+            java.lang.String searchParamCity, Date searchParamDate,
+            OrderByComparator<Weather> orderByComparator)
+            throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
+        return getPersistence()
+                .findByByCityAndDate_First(searchParamCity, searchParamDate,
                         orderByComparator);
     }
 
     /**
-     * Returns an ordered range of all the weathers where city = &#63; and date = &#63;.
+     * Returns the first weather in the ordered set where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching weather, or <code>null</code> if a matching weather could not be found
+     */
+    public static Weather fetchByByCityAndDate_First(
+            java.lang.String searchParamCity, Date searchParamDate,
+            OrderByComparator<Weather> orderByComparator) {
+        return getPersistence()
+                .fetchByByCityAndDate_First(searchParamCity,
+                        searchParamDate, orderByComparator);
+    }
+
+    /**
+     * Returns the last weather in the ordered set where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching weather
+     * @throws NoSuchWeatherException if a matching weather could not be found
+     */
+    public static Weather findByByCityAndDate_Last(
+            java.lang.String searchParamCity, Date searchParamDate,
+            OrderByComparator<Weather> orderByComparator)
+            throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
+        return getPersistence()
+                .findByByCityAndDate_Last(searchParamCity, searchParamDate,
+                        orderByComparator);
+    }
+
+    /**
+     * Returns the last weather in the ordered set where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching weather, or <code>null</code> if a matching weather could not be found
+     */
+    public static Weather fetchByByCityAndDate_Last(
+            java.lang.String searchParamCity, Date searchParamDate,
+            OrderByComparator<Weather> orderByComparator) {
+        return getPersistence()
+                .fetchByByCityAndDate_Last(searchParamCity, searchParamDate,
+                        orderByComparator);
+    }
+
+    /**
+     * Returns the weathers before and after the current weather in the ordered set where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param weatherId         the primary key of the current weather
+     * @param searchParamCity   the search param city
+     * @param searchParamDate   the search param date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next weather
+     * @throws NoSuchWeatherException if a weather with the primary key could not be found
+     */
+    public static Weather[] findByByCityAndDate_PrevAndNext(long weatherId,
+                                                            java.lang.String searchParamCity, Date searchParamDate,
+                                                            OrderByComparator<Weather> orderByComparator)
+            throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
+        return getPersistence()
+                .findByByCityAndDate_PrevAndNext(weatherId, searchParamCity,
+                        searchParamDate, orderByComparator);
+    }
+
+    /**
+     * Removes all the weathers where searchParamCity = &#63; and searchParamDate = &#63; from the database.
+     *
+     * @param searchParamCity the search param city
+     * @param searchParamDate the search param date
+     */
+    public static void removeByByCityAndDate(java.lang.String searchParamCity,
+                                             Date searchParamDate) {
+        getPersistence().removeByByCityAndDate(searchParamCity, searchParamDate);
+    }
+
+    /**
+     * Returns the number of weathers where searchParamCity = &#63; and searchParamDate = &#63;.
+     *
+     * @param searchParamCity the search param city
+     * @param searchParamDate the search param date
+     * @return the number of matching weathers
+     */
+    public static int countByByCityAndDate(java.lang.String searchParamCity,
+                                           Date searchParamDate) {
+        return getPersistence()
+                .countByByCityAndDate(searchParamCity, searchParamDate);
+    }
+
+    /**
+     * Returns all the weathers where searchParamCity = &#63;.
+     *
+     * @param searchParamCity the search param city
+     * @return the matching weathers
+     */
+    public static List<Weather> findByByCity(java.lang.String searchParamCity) {
+        return getPersistence().findByByCity(searchParamCity);
+    }
+
+    /**
+     * Returns a range of all the weathers where searchParamCity = &#63;.
+     * <p>
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param searchParamCity the search param city
+     * @param start           the lower bound of the range of weathers
+     * @param end             the upper bound of the range of weathers (not inclusive)
+     * @return the range of matching weathers
+     */
+    public static List<Weather> findByByCity(java.lang.String searchParamCity,
+                                             int start, int end) {
+        return getPersistence().findByByCity(searchParamCity, start, end);
+    }
+
+    /**
+     * Returns an ordered range of all the weathers where searchParamCity = &#63;.
+     * <p>
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param searchParamCity   the search param city
+     * @param start             the lower bound of the range of weathers
+     * @param end               the upper bound of the range of weathers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching weathers
+     */
+    public static List<Weather> findByByCity(java.lang.String searchParamCity,
+                                             int start, int end, OrderByComparator<Weather> orderByComparator) {
+        return getPersistence()
+                .findByByCity(searchParamCity, start, end, orderByComparator);
+    }
+
+    /**
+     * Returns an ordered range of all the weathers where searchParamCity = &#63;.
      *
      * <p>
      * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WeatherModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
      * </p>
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity the search param city
      * @param start the lower bound of the range of weathers
      * @param end the upper bound of the range of weathers (not inclusive)
      * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
      * @param retrieveFromCache whether to retrieve from the finder cache
      * @return the ordered range of matching weathers
      */
-    public static List<Weather> findByByCityAndDate(java.lang.String city,
-                                                    Date date, int start, int end,
-                                                    OrderByComparator<Weather> orderByComparator, boolean retrieveFromCache) {
+    public static List<Weather> findByByCity(java.lang.String searchParamCity,
+                                             int start, int end, OrderByComparator<Weather> orderByComparator,
+                                             boolean retrieveFromCache) {
         return getPersistence()
-                .findByByCityAndDate(city, date, start, end,
+                .findByByCity(searchParamCity, start, end,
                         orderByComparator, retrieveFromCache);
     }
 
     /**
-     * Returns the first weather in the ordered set where city = &#63; and date = &#63;.
+     * Returns the first weather in the ordered set where searchParamCity = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity   the search param city
      * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
      * @return the first matching weather
      * @throws NoSuchWeatherException if a matching weather could not be found
      */
-    public static Weather findByByCityAndDate_First(java.lang.String city,
-                                                    Date date, OrderByComparator<Weather> orderByComparator)
+    public static Weather findByByCity_First(java.lang.String searchParamCity,
+                                             OrderByComparator<Weather> orderByComparator)
             throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
         return getPersistence()
-                .findByByCityAndDate_First(city, date, orderByComparator);
+                .findByByCity_First(searchParamCity, orderByComparator);
     }
 
     /**
-     * Returns the first weather in the ordered set where city = &#63; and date = &#63;.
+     * Returns the first weather in the ordered set where searchParamCity = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity   the search param city
      * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
      * @return the first matching weather, or <code>null</code> if a matching weather could not be found
      */
-    public static Weather fetchByByCityAndDate_First(java.lang.String city,
-                                                     Date date, OrderByComparator<Weather> orderByComparator) {
+    public static Weather fetchByByCity_First(
+            java.lang.String searchParamCity,
+            OrderByComparator<Weather> orderByComparator) {
         return getPersistence()
-                .fetchByByCityAndDate_First(city, date, orderByComparator);
+                .fetchByByCity_First(searchParamCity, orderByComparator);
     }
 
     /**
-     * Returns the last weather in the ordered set where city = &#63; and date = &#63;.
+     * Returns the last weather in the ordered set where searchParamCity = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity   the search param city
      * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
      * @return the last matching weather
      * @throws NoSuchWeatherException if a matching weather could not be found
      */
-    public static Weather findByByCityAndDate_Last(java.lang.String city,
-                                                   Date date, OrderByComparator<Weather> orderByComparator)
+    public static Weather findByByCity_Last(java.lang.String searchParamCity,
+                                            OrderByComparator<Weather> orderByComparator)
             throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
         return getPersistence()
-                .findByByCityAndDate_Last(city, date, orderByComparator);
+                .findByByCity_Last(searchParamCity, orderByComparator);
     }
 
     /**
-     * Returns the last weather in the ordered set where city = &#63; and date = &#63;.
+     * Returns the last weather in the ordered set where searchParamCity = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity   the search param city
      * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
      * @return the last matching weather, or <code>null</code> if a matching weather could not be found
      */
-    public static Weather fetchByByCityAndDate_Last(java.lang.String city,
-                                                    Date date, OrderByComparator<Weather> orderByComparator) {
+    public static Weather fetchByByCity_Last(java.lang.String searchParamCity,
+                                             OrderByComparator<Weather> orderByComparator) {
         return getPersistence()
-                .fetchByByCityAndDate_Last(city, date, orderByComparator);
+                .fetchByByCity_Last(searchParamCity, orderByComparator);
     }
 
     /**
-     * Returns the weathers before and after the current weather in the ordered set where city = &#63; and date = &#63;.
+     * Returns the weathers before and after the current weather in the ordered set where searchParamCity = &#63;.
      *
      * @param weatherId the primary key of the current weather
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity the search param city
      * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
      * @return the previous, current, and next weather
      * @throws NoSuchWeatherException if a weather with the primary key could not be found
      */
-    public static Weather[] findByByCityAndDate_PrevAndNext(long weatherId,
-                                                            java.lang.String city, Date date,
-                                                            OrderByComparator<Weather> orderByComparator)
+    public static Weather[] findByByCity_PrevAndNext(long weatherId,
+                                                     java.lang.String searchParamCity,
+                                                     OrderByComparator<Weather> orderByComparator)
             throws edu.efimovta.liferay.osgi.db.weather.exception.NoSuchWeatherException {
         return getPersistence()
-                .findByByCityAndDate_PrevAndNext(weatherId, city, date,
+                .findByByCity_PrevAndNext(weatherId, searchParamCity,
                         orderByComparator);
     }
 
     /**
-     * Removes all the weathers where city = &#63; and date = &#63; from the database.
+     * Removes all the weathers where searchParamCity = &#63; from the database.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity the search param city
      */
-    public static void removeByByCityAndDate(java.lang.String city, Date date) {
-        getPersistence().removeByByCityAndDate(city, date);
+    public static void removeByByCity(java.lang.String searchParamCity) {
+        getPersistence().removeByByCity(searchParamCity);
     }
 
     /**
-     * Returns the number of weathers where city = &#63; and date = &#63;.
+     * Returns the number of weathers where searchParamCity = &#63;.
      *
-     * @param city the city
-     * @param date the date
+     * @param searchParamCity the search param city
      * @return the number of matching weathers
      */
-    public static int countByByCityAndDate(java.lang.String city, Date date) {
-        return getPersistence().countByByCityAndDate(city, date);
+    public static int countByByCity(java.lang.String searchParamCity) {
+        return getPersistence().countByByCity(searchParamCity);
     }
 
     /**
@@ -407,35 +585,35 @@ public class WeatherUtil {
      * @param end the upper bound of the range of weathers (not inclusive)
      * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
      * @param retrieveFromCache whether to retrieve from the finder cache
-     * @return the ordered range of weathers
-     */
-    public static List<Weather> findAll(int start, int end,
-                                        OrderByComparator<Weather> orderByComparator, boolean retrieveFromCache) {
-        return getPersistence()
-                .findAll(start, end, orderByComparator, retrieveFromCache);
-    }
+	* @return the ordered range of weathers
+	*/
+	public static List<Weather> findAll(int start, int end,
+		OrderByComparator<Weather> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
+	}
 
-    /**
+	/**
      * Removes all the weathers from the database.
-     */
-    public static void removeAll() {
-        getPersistence().removeAll();
-    }
+	*/
+	public static void removeAll() {
+		getPersistence().removeAll();
+	}
 
-    /**
+	/**
      * Returns the number of weathers.
-     *
-     * @return the number of weathers
-     */
-    public static int countAll() {
-        return getPersistence().countAll();
-    }
+	*
+	* @return the number of weathers
+	*/
+	public static int countAll() {
+		return getPersistence().countAll();
+	}
 
-    public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
         return getPersistence().getBadColumnNames();
-    }
+	}
 
-    public static WeatherPersistence getPersistence() {
+	public static WeatherPersistence getPersistence() {
         return _serviceTracker.getService();
-    }
+	}
 }

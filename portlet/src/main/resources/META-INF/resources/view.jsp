@@ -4,7 +4,7 @@
 
 <liferay-ui:message key="my.portlet.mes"/>
 </br>
-Просто нужно было добавть какой-нибудь текст
+Problem with russian: Просто нужно было добавть какой-нибудь текст
 </br>
 
 <c:if test="${empty weather}">

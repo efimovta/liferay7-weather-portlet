@@ -4,7 +4,7 @@
 
 <hibernate-mapping auto-import="false" default-lazy="false">
     <import class="edu.efimovta.liferay.osgi.db.weather.model.Weather"/>
-    <class name="edu.efimovta.liferay.osgi.db.weather.model.impl.WeatherImpl" table="Weather_Weather">
+    <class name="edu.efimovta.liferay.osgi.db.weather.model.impl.WeatherImpl" table="Weatherdb_Weather">
         <id name="weatherId" type="long">
             <generator class="assigned"/>
         </id>
@@ -14,6 +14,8 @@
         <property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
         <property name="createDate" type="org.hibernate.type.TimestampType"/>
         <property name="modifiedDate" type="org.hibernate.type.TimestampType"/>
+        <property name="searchParamCity" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
+        <property name="searchParamDate" type="org.hibernate.type.TimestampType"/>
         <property name="source" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
         <property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType"/>
         <property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType"/>

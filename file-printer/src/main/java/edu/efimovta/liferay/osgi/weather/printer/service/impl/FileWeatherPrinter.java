@@ -32,7 +32,7 @@ public class FileWeatherPrinter implements WeatherPrinter {
             sb.append("~~~~~~~~~~# " + weather.getSource() + " #~~~~~~~~~~");
             sb.append("\nCity: ").append(weather.getCity());
             sb.append("\ncountry: ").append(weather.getCountry());
-            sb.append("\nlatitude, longitude: ").append(weather.getLat()).append(", ").append(weather.getLon());
+            sb.append("\nlatitude, longitude: ").append(weather.getLatitude()).append(", ").append(weather.getLongitude());
             sb.append("\nconditionText: ").append(weather.getCondition());
             sb.append("\nDate: ").append(weather.getDate());
             sb.append("\navgtemp_c: ").append(weather.getAvgTemp());
@@ -63,7 +63,7 @@ public class FileWeatherPrinter implements WeatherPrinter {
                 sb.append("\n~~~~~~~~~~# " + weather.getSource() + " #~~~~~~~~~~");
                 sb.append("\nCity: ").append(weather.getCity());
                 sb.append("\ncountry: ").append(weather.getCountry());
-                sb.append("\nlat, lon: ").append(weather.getLat()).append(", ").append(weather.getLon());
+                sb.append("\nlat, lon: ").append(weather.getLatitude()).append(", ").append(weather.getLongitude());
                 sb.append("\nDate: ").append(weather.getDate());
                 sb.append("\nconditionText: ").append(weather.getCondition());
                 sb.append("\navgtemp_c: ").append(weather.getAvgTemp());

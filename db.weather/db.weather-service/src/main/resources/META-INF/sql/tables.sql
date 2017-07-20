@@ -1,4 +1,4 @@
-create table Weather_Weather (
+create table Weatherdb_Weather (
 	weatherId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -6,6 +6,8 @@ create table Weather_Weather (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
+	searchParamCity VARCHAR(75) null,
+	searchParamDate DATE null,
 	source VARCHAR(75) null,
 	city VARCHAR(75) null,
 	country VARCHAR(75) null,

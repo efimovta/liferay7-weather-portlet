@@ -22,11 +22,11 @@ public interface Weather {
 
     void setCountry(String country);
 
-    double getLat();
+    double getLatitude();
 
     void setLatitude(double lat);
 
-    double getLon();
+    double getLongitude();
 
     void setLongitude(double lon);
 

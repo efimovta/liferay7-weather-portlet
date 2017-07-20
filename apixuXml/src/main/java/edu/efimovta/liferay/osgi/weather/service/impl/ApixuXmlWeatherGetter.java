@@ -125,7 +125,8 @@ public class ApixuXmlWeatherGetter implements WeatherGetter {
         double mintemp_c = Double.parseDouble(day.getElementsByTagName("mintemp_c").item(0).getTextContent());
         double maxtemp_c = Double.parseDouble(day.getElementsByTagName("maxtemp_c").item(0).getTextContent());
 
-        Date date = new Date((date_epoch - 3 * 60 * 60) * 1000);
+        Date date = new Date((date_epoch) * 1000);
+//        Date date = new Date((date_epoch - 3 * 60 * 60) * 1000);
 
         weather = new WeatherFactory().get();
         weather.setSource(SOURCE_NAME);

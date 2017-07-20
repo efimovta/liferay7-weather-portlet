@@ -44,7 +44,8 @@ public class ApixuFromJsonStructureWeatherBuilder {
         double maxtemp_c = day.getMaxtemp_c();
 
 
-        Date date = new Date((date_epoch - 3 * 60 * 60) * 1000);
+        Date date = new Date((date_epoch) * 1000);
+//        Date date = new Date((date_epoch - 3 * 60 * 60) * 1000);
 
 
         weather.setCity(city);

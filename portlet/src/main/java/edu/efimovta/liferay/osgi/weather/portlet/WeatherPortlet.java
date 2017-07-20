@@ -74,7 +74,6 @@ public class WeatherPortlet extends MVCPortlet {
     @Override
     public void doPrint(RenderRequest renderRequest, RenderResponse renderResponse)
             throws IOException, PortletException {
-
         includeWeatherAttributes(renderRequest);
         super.doPrint(renderRequest, renderResponse);
     }
@@ -96,13 +95,19 @@ public class WeatherPortlet extends MVCPortlet {
             if (dateStr == null || Objects.equals(dateStr, "")) {
                 date = dateDef;
                 dateStr = dateFormat.format(dateDef);
+                date = dateFormat.parse(dateStr);
             } else {
                 date = dateFormat.parse(dateStr);
             }
 
-            weather = weatherGetter.get(city, date);
-
-            add(weather);
+            weather = weatherLocalService.getByCityAndDate(city, date);
+            if (weather == null) {
+                weather = weatherGetter.get(city, date);
+                weatherLocalService.add(city, date, weather);
+                _log.info("weather forecast was given from WeatherGetter service");
+            } else {
+                _log.info("weather forecast was given from cash");
+            }
 
         } catch (WeatherGetterException e) {
             _log.error("While weatherGetter.get(city, date);", e);
@@ -114,19 +119,6 @@ public class WeatherPortlet extends MVCPortlet {
         renderRequest.setAttribute("date", dateStr);
         renderRequest.setAttribute("weather", weather);
 
-    }
-
-    private void add(Weather weather) {
-        long i = counterLocalService.increment();
-        System.out.println("~~~~~~~~~~~~~~~ counterLocalService.getCountersCount(); --- " + i);
-        edu.efimovta.liferay.osgi.db.weather.model.Weather weatherdb =
-                weatherLocalService.createWeather(i);
-
-        weatherdb.setCity(weather.getCity());
-        weatherdb.setCondition(weather.getCondition());
-
-        weatherLocalService.addWeather(weatherdb);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~ weathers count: " + weatherLocalService.getWeathersCount());
     }
 
     @Activate

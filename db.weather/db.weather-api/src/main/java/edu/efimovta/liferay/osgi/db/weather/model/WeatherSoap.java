@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * <p>
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * <p>
+ *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -37,6 +37,8 @@ public class WeatherSoap implements Serializable {
     private String _userName;
     private Date _createDate;
     private Date _modifiedDate;
+    private String _searchParamCity;
+    private Date _searchParamDate;
     private String _source;
     private String _city;
     private String _country;
@@ -61,6 +63,8 @@ public class WeatherSoap implements Serializable {
         soapModel.setUserName(model.getUserName());
         soapModel.setCreateDate(model.getCreateDate());
         soapModel.setModifiedDate(model.getModifiedDate());
+        soapModel.setSearchParamCity(model.getSearchParamCity());
+        soapModel.setSearchParamDate(model.getSearchParamDate());
         soapModel.setSource(model.getSource());
         soapModel.setCity(model.getCity());
         soapModel.setCountry(model.getCountry());
@@ -173,6 +177,22 @@ public class WeatherSoap implements Serializable {
 
     public void setModifiedDate(Date modifiedDate) {
         _modifiedDate = modifiedDate;
+    }
+
+    public String getSearchParamCity() {
+        return _searchParamCity;
+    }
+
+    public void setSearchParamCity(String searchParamCity) {
+        _searchParamCity = searchParamCity;
+    }
+
+    public Date getSearchParamDate() {
+        return _searchParamDate;
+    }
+
+    public void setSearchParamDate(Date searchParamDate) {
+        _searchParamDate = searchParamDate;
     }
 
     public String getSource() {
